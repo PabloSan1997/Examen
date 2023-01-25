@@ -5,7 +5,8 @@ function Lista(props){
     const {cambiando, setNomas}=React.useContext(Micontexto);
     const cambiarEstado=(num)=>{
         cambiando(props.numero, num);
-        setNomas('se cambio'+props.numero);
+        setNomas('se cambio'+props.numero+num);
+        //esto se agrego
     }
     return(
         <div className="filaPregunta">
