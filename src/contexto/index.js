@@ -10,6 +10,7 @@ function Provedoor(props) {
   const [texto2, setTexto2] = React.useState("");
   const [texto3, setTexto3] = React.useState("");
   const [usar, setUsar] = React.useState(false);
+  const [nomas, setNomas] = React.useState('');
   let preg;
   if (texto3 != "") {
     preg = prego.filter((elemento) => {
@@ -20,14 +21,20 @@ function Provedoor(props) {
   }
 
   const agregarPregunta = () => {
-    let numero = preg.length + 1;
+    let numero;
+    if(prego.length===0){
+      numero=1;
+    }else if(prego.length>0){
+      let hola = prego[prego.length-1];
+      numero=hola.id+1;
+    }
     if (texto1 != "") {
       let nuevoElemento = {
         id: numero,
         nombre: texto1,
         respuesta: [],
       };
-      let elemento = preg;
+      let elemento = prego;
       elemento.push(nuevoElemento);
       setGuardar(elemento);
       setTexto1('');
@@ -41,10 +48,13 @@ function Provedoor(props) {
       if (texto2 != "") {
         let numero = preg[0].id;
         hola[0] = texto2;
-        let mira = prego;
-        mira[numero - 1].respuesta.push(hola);
-        setGuardar(mira);
-        setTexto2('');
+        let indice = prego.findIndex(ind=>ind.id===numero);
+        if(indice!=-1){
+          let nose = prego;
+          nose[indice].respuesta.push(hola);
+          setGuardar(nose);
+          setTexto2('');
+        }
       }
     }
   };
@@ -59,6 +69,12 @@ function Provedoor(props) {
         setGuardar(no);
       }
     
+  }
+  const cambiando =(elementoId, num)=>{
+    let todo = prego;
+    let miElemento = todo.findIndex(vv=>vv.id===elementoId);
+    todo[miElemento].estado=num;
+    setGuardar(todo);
   }
   return (
     <Micontexto.Provider
@@ -76,7 +92,9 @@ function Provedoor(props) {
         usar,
         agregarRespuesta,
         eliminarTodo,
-        eliminarUno
+        eliminarUno,
+        cambiando,
+        setNomas
       }}
     >
       {props.children}

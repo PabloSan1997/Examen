@@ -16,6 +16,7 @@ function AppUi(){
                      nombre={valor.nombre}
                      numero={valor.id}
                      respuestas={valor.respuesta}
+                     estado={valor.estado}
                      />
                 ))}
             </Arealista>

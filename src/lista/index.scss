@@ -9,6 +9,23 @@
            background: rgb(7, 7, 68);
            height: 30px;
            display: flex;
+           flex-direction: row;
+           .botones{
+            width: 50px;
+            display: flex;
+            .boton{
+                font-size: 1rem;
+                margin: auto;
+                width: 20px;
+                border: 2px solid rgb(4, 4, 51);
+                background: rgb(3, 3, 37);
+                color: white;
+                cursor: pointer;
+                &:hover{
+                    background: rgb(6, 6, 78);
+                }
+            }
+           }
            p{
             color: white;
             margin: auto auto auto 2%;
